@@ -2336,3 +2336,133 @@ th {
     font-size: 1.35rem;
   }
 }
+
+/* ================= SHOW TAGLINE ON MOBILE ================= */
+
+@media (max-width: 420px) {
+  .brand p {
+    display: block !important;
+    font-size: 0.48rem;
+    letter-spacing: 0.16em;
+    margin-top: 3px;
+    color: #b9c4d0;
+  }
+
+  .brand h2 {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  .brand {
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 48px !important;
+    height: 48px !important;
+  }
+}
+
+/* ================= FINAL NAVBAR LOGO IMAGE ONLY ================= */
+
+.navbar {
+  background:
+    linear-gradient(180deg, rgba(7, 11, 16, 0.98), rgba(6, 12, 18, 0.96)) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(31, 138, 203, 0.22);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+.nav-inner {
+  min-height: 92px;
+}
+
+.logo-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar-full-logo {
+  width: 230px !important;
+  height: 78px !important;
+  max-width: 230px !important;
+  max-height: 78px !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  filter:
+    drop-shadow(0 0 3px rgba(255, 255, 255, 0.9))
+    drop-shadow(0 0 10px rgba(31, 138, 203, 0.35));
+}
+
+.brand-logo {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.nav-links a {
+  color: #dbeafe !important;
+  font-weight: 700;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #38bdf8 !important;
+}
+
+.menu-btn {
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 768px) {
+  .nav-inner {
+    min-height: 82px;
+  }
+
+  .navbar-full-logo {
+    width: 185px !important;
+    height: 64px !important;
+    max-width: 185px !important;
+    max-height: 64px !important;
+  }
+
+  .nav-links {
+    top: 82px;
+    background: rgba(7, 11, 16, 0.98) !important;
+    border-bottom: 1px solid rgba(31, 138, 203, 0.22);
+  }
+
+  .nav-links a {
+    color: #dbeafe !important;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(31, 138, 203, 0.14);
+    color: #38bdf8 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar-full-logo {
+    width: 150px !important;
+    height: 54px !important;
+    max-width: 150px !important;
+    max-height: 54px !important;
+  }
+
+  .nav-inner {
+    min-height: 76px;
+  }
+
+  .nav-links {
+    top: 76px;
+  }
+}
