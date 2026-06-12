@@ -137,14 +137,12 @@ export default function AdminDashboard() {
 
     liveMemberships: customers.filter((c) => {
       if (c.membership?.freeze?.isFrozen) return false;
-
       const days = getDaysLeft(c.membership?.expiryDate);
       return days === null || days >= 0;
     }).length,
 
     expiredMemberships: customers.filter((c) => {
       if (c.membership?.freeze?.isFrozen) return false;
-
       const days = getDaysLeft(c.membership?.expiryDate);
       return days !== null && days < 0;
     }).length,
@@ -154,21 +152,18 @@ export default function AdminDashboard() {
 
     expiring1to3: customers.filter((c) => {
       if (c.membership?.freeze?.isFrozen) return false;
-
       const days = getDaysLeft(c.membership?.expiryDate);
       return days >= 1 && days <= 3;
     }).length,
 
     expiring4to7: customers.filter((c) => {
       if (c.membership?.freeze?.isFrozen) return false;
-
       const days = getDaysLeft(c.membership?.expiryDate);
       return days >= 4 && days <= 7;
     }).length,
 
     expiring8to15: customers.filter((c) => {
       if (c.membership?.freeze?.isFrozen) return false;
-
       const days = getDaysLeft(c.membership?.expiryDate);
       return days >= 8 && days <= 15;
     }).length,
@@ -202,39 +197,34 @@ export default function AdminDashboard() {
     enquiries: enquirySummary?.total || 0,
   };
 
-  const renderSectionTitle = () => {
-    const titles = {
-      customers: "Customers",
-      trainers: "Trainers",
-      attendance: "Attendance",
-      expenses: "Expenses",
-      "balance-sheet": "Balance Sheet",
-      enquiries: "Enquiries",
-      reports: "Reports",
-      "live-memberships": "Live Memberships",
-      "expired-memberships": "Expired Memberships",
-      "frozen-memberships": "Frozen Memberships",
-      "expiring-1-3": "Expiring 1–3 Days",
-      "expiring-4-7": "Expiring 4–7 Days",
-      "expiring-8-15": "Expiring 8–15 Days",
-      dues: "Due Amount",
-      "today-collection": "Today Collection",
-      "total-collection": "Total Collection",
-    };
-
-    return titles[activeSection] || "Dashboard";
+  const pageTitles = {
+    overview: "Dashboard Overview",
+    customers: "Customers",
+    trainers: "Trainers",
+    attendance: "Attendance",
+    expenses: "Expenses",
+    "balance-sheet": "Balance Sheet",
+    enquiries: "Enquiries",
+    reports: "Reports",
+    "live-memberships": "Live Memberships",
+    "expired-memberships": "Expired Memberships",
+    "frozen-memberships": "Frozen Memberships",
+    "expiring-1-3": "Expiring 1–3 Days",
+    "expiring-4-7": "Expiring 4–7 Days",
+    "expiring-8-15": "Expiring 8–15 Days",
+    dues: "Due Amount",
+    "today-collection": "Today Collection",
+    "total-collection": "Total Collection",
   };
 
   const renderSection = () => {
     if (activeSection === "overview") {
       return (
-        <div className="card dashboard-welcome-card">
-          <h2>Dashboard Overview</h2>
-          <p className="card-text">
-            Select any card above or use the section buttons below to open that
-            module on a separate dashboard page.
-          </p>
-        </div>
+        <DashboardCards
+          role="admin"
+          stats={stats}
+          onOpenSection={openSection}
+        />
       );
     }
 
@@ -360,10 +350,16 @@ export default function AdminDashboard() {
       };
 
       return (
-        <CustomerList
-          refreshKey={customerRefreshKey}
-          filter={filterMap[activeSection]}
-        />
+        <>
+          <div className="section-action-row">
+            <h2>{pageTitles[activeSection]}</h2>
+          </div>
+
+          <CustomerList
+            refreshKey={customerRefreshKey}
+            filter={filterMap[activeSection]}
+          />
+        </>
       );
     }
 
@@ -376,6 +372,7 @@ export default function AdminDashboard() {
   };
 
   const tabItems = [
+    { label: "Overview", key: "overview" },
     { label: "Customers", key: "customers" },
     { label: "Trainers", key: "trainers" },
     { label: "Attendance", key: "attendance" },
@@ -388,18 +385,18 @@ export default function AdminDashboard() {
   return (
     <section className="section page-top dashboard-page">
       <div className="container">
-        <div className="dashboard-head">
+        <div className="dashboard-head compact-dashboard-head">
           <div>
             <p className="eyebrow">Admin Dashboard</p>
-            <h1>Welcome, {user?.name}</h1>
-            <p className="card-text">
-              Manage customers, trainers, attendance, enquiries, reports and
-              financial overview.
-            </p>
+            <h1>{pageTitles[activeSection] || "Dashboard"}</h1>
+
+            {activeSection === "overview" && (
+              <p className="card-text">
+                Welcome, {user?.name}. Select a card to open that module.
+              </p>
+            )}
           </div>
         </div>
-
-        <DashboardCards role="admin" stats={stats} onOpenSection={openSection} />
 
         <div className="dashboard-tabs">
           {tabItems.map((item) => (
@@ -407,16 +404,15 @@ export default function AdminDashboard() {
               key={item.key}
               type="button"
               className={activeSection === item.key ? "active" : ""}
-              onClick={() => openSection(item.key)}
+              onClick={() =>
+                item.key === "overview"
+                  ? navigate("/admin-dashboard")
+                  : openSection(item.key)
+              }
             >
               {item.label}
             </button>
           ))}
-        </div>
-
-        <div className="dashboard-section-title">
-          <p className="eyebrow">Current Section</p>
-          <h2>{renderSectionTitle()}</h2>
         </div>
 
         <div className="dashboard-grid">{renderSection()}</div>
