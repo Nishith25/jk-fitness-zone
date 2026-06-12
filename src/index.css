@@ -2763,14 +2763,14 @@ th {
   background: #ffffff;
 }
 
-/* ================= BIGGER WEBSITE LOGO ================= */
+/* ================= BIGGER NAVBAR LOGO ================= */
 
 .brand-logo {
   width: 72px;
   height: 72px;
   object-fit: contain;
   background: #ffffff;
-  padding: 4px;
+  padding: 5px;
   border-radius: 16px;
 }
 
@@ -2778,34 +2778,17 @@ th {
   min-height: 92px;
 }
 
-.brand h2 {
-  font-size: 1.15rem;
-}
-
-.brand p {
-  font-size: 0.72rem;
-}
-
 @media (max-width: 768px) {
   .brand-logo {
     width: 58px;
     height: 58px;
-    border-radius: 14px;
   }
 
   .nav-inner {
-    min-height: 82px;
+    min-height: 78px;
   }
 
   .nav-links {
-    top: 82px;
-  }
-
-  .brand h2 {
-    font-size: 0.9rem;
-  }
-
-  .brand p {
-    font-size: 0.58rem;
+    top: 78px;
   }
 }
