@@ -13,11 +13,7 @@ export default function Navbar() {
     <header className="navbar">
       <div className="container nav-inner">
         <NavLink to="/" className="brand" onClick={closeMenu}>
-          <img
-  src="/logo.png"
-  alt={siteConfig.name}
-  className="brand-logo-wide"
-/>
+          <img src="/logo.png" alt={siteConfig.name} className="brand-logo" />
 
           <div>
             <h2>{siteConfig.name}</h2>
