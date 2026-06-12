@@ -2840,3 +2840,43 @@ th {
     font-size: 0.82rem;
   }
 }
+/* ================= WIDE LOGO NAVBAR FIX ================= */
+
+.brand-logo-only {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo-wide {
+  width: 235px;
+  height: 82px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(31, 138, 203, 0.35));
+}
+
+.nav-inner {
+  min-height: 102px;
+}
+
+@media (max-width: 768px) {
+  .brand-logo-wide {
+    width: 185px;
+    height: 68px;
+  }
+
+  .nav-inner {
+    min-height: 84px;
+  }
+
+  .nav-links {
+    top: 84px;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-logo-wide {
+    width: 155px;
+    height: 60px;
+  }
+}
