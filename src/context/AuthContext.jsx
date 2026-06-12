@@ -1,8 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
-const API = "http://localhost:5001/api";
+
+const BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5001";
+
+const API = `${BASE_URL}/api`;
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
@@ -38,7 +42,16 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, authHeaders, API }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        login,
+        logout,
+        authHeaders,
+        API,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
