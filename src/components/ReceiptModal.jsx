@@ -16,7 +16,7 @@ export default function ReceiptModal({ customer, onClose }) {
 
           <div className="receipt-header-pro">
             <div className="receipt-brand">
-              <img src="/logo.jpeg" alt="JK Fitness Zone" />
+              <img src="/logo.jpg" alt="JK Fitness Zone" />
               <div>
                 <h1>JK FITNESS ZONE</h1>
                 <p>Train Beyond Limits</p>
