@@ -16,15 +16,11 @@ export default function CustomerList({ refreshKey, filter = "" }) {
   const [receiptCustomer, setReceiptCustomer] = useState(null);
   const [profileCustomer, setProfileCustomer] = useState(null);
   const [freezeCustomer, setFreezeCustomer] = useState(null);
-
   const [localRefresh, setLocalRefresh] = useState(0);
 
   const fetchCustomers = async () => {
     try {
-      const url = filter
-        ? `${API}/customers?filter=${filter}`
-        : `${API}/customers`;
-
+      const url = filter ? `${API}/customers?filter=${filter}` : `${API}/customers`;
       const res = await axios.get(url, authHeaders);
       setCustomers(res.data.customers || []);
     } catch (err) {
@@ -51,14 +47,12 @@ export default function CustomerList({ refreshKey, filter = "" }) {
     return "status-expired";
   };
 
-  const handleRefresh = () => {
-    setLocalRefresh((x) => x + 1);
-  };
+  const handleRefresh = () => setLocalRefresh((x) => x + 1);
 
   const actionColSpan = user?.role === "admin" ? "12" : "8";
 
   return (
-    <div className="card">
+    <div className="card customer-list-card">
       <h2>Customer List</h2>
 
       {selectedCustomer && (
@@ -101,8 +95,8 @@ export default function CustomerList({ refreshKey, filter = "" }) {
         />
       )}
 
-      <div className="table-wrap">
-        <table>
+      <div className="table-wrap customer-table-wrap">
+        <table className="customer-table">
           <thead>
             <tr>
               <th>Photo</th>
@@ -125,21 +119,21 @@ export default function CustomerList({ refreshKey, filter = "" }) {
           <tbody>
             {customers.map((c) => (
               <tr key={c._id}>
-                <td>
+                <td data-label="Photo">
                   {c.photo ? (
                     <img
-                      src={`http://localhost:5001${c.photo}`}
+                      src={`https://jk-fitness-zone-backend.onrender.com${c.photo}`}
                       alt={c.name}
                       className="customer-photo"
                     />
                   ) : (
-                    "No Photo"
+                    <span className="no-photo-text">No Photo</span>
                   )}
                 </td>
 
-                <td>{c.loginId}</td>
+                <td data-label="Customer ID">{c.loginId}</td>
 
-                <td>
+                <td data-label="Name">
                   <button
                     className="link-button"
                     type="button"
@@ -149,35 +143,31 @@ export default function CustomerList({ refreshKey, filter = "" }) {
                   </button>
                 </td>
 
-                <td>{c.phone}</td>
+                <td data-label="Phone">{c.phone}</td>
 
-                <td>{c.membership?.planName || "-"}</td>
+                <td data-label="Plan">{c.membership?.planName || "-"}</td>
 
                 {user?.role === "admin" && (
-                  <td>₹{c.membership?.finalAmount ?? 0}</td>
+                  <td data-label="Total">₹{c.membership?.finalAmount ?? 0}</td>
                 )}
 
                 {user?.role === "admin" && (
-                  <td>₹{c.membership?.amountPaid ?? 0}</td>
+                  <td data-label="Paid">₹{c.membership?.amountPaid ?? 0}</td>
                 )}
 
                 {user?.role === "admin" && (
-                  <td>₹{c.membership?.dueAmount ?? 0}</td>
+                  <td data-label="Due">₹{c.membership?.dueAmount ?? 0}</td>
                 )}
 
                 {user?.role === "admin" && (
-                  <td>
-                    <span
-                      className={getPaymentStatusClass(
-                        c.membership?.paymentStatus
-                      )}
-                    >
+                  <td data-label="Payment">
+                    <span className={getPaymentStatusClass(c.membership?.paymentStatus)}>
                       {c.membership?.paymentStatus || "unpaid"}
                     </span>
                   </td>
                 )}
 
-                <td>
+                <td data-label="Days Left">
                   {c.membership?.status === "frozen"
                     ? "Frozen"
                     : c.membership?.daysLeft === null ||
@@ -186,14 +176,14 @@ export default function CustomerList({ refreshKey, filter = "" }) {
                     : c.membership.daysLeft}
                 </td>
 
-                <td>
+                <td data-label="Status">
                   <span className={getStatusClass(c)}>
                     {c.membership?.status || c.status}
                   </span>
                 </td>
 
-                <td>
-                  <div className="table-actions">
+                <td data-label="Action">
+                  <div className="table-actions mobile-customer-actions">
                     <button
                       className="small-action-btn secondary-small"
                       type="button"
