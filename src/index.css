@@ -2880,3 +2880,76 @@ th {
     height: 60px;
   }
 }
+
+/* ================= WHITE NAVBAR FOR LOGO VISIBILITY ================= */
+
+.navbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.nav-links a {
+  color: #111827 !important;
+  font-weight: 700;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #1f8acb !important;
+}
+
+.brand-logo-wide {
+  width: 235px;
+  height: 82px;
+  object-fit: contain;
+  background: transparent;
+  filter: none;
+}
+
+.nav-inner {
+  min-height: 98px;
+}
+
+.menu-btn {
+  color: #111827 !important;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    background: #ffffff !important;
+  }
+
+  .brand-logo-wide {
+    width: 185px;
+    height: 68px;
+  }
+
+  .nav-inner {
+    min-height: 84px;
+  }
+
+  .nav-links {
+    top: 84px;
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  }
+
+  .nav-links a {
+    color: #111827 !important;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(31, 138, 203, 0.1);
+    color: #1f8acb !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-logo-wide {
+    width: 155px;
+    height: 60px;
+  }
+}
