@@ -12,12 +12,13 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="container nav-inner">
-        <NavLink to="/" className="brand brand-logo-only" onClick={closeMenu}>
-          <img
-            src="/logo-wide.png"
-            alt={siteConfig.name}
-            className="brand-logo-wide"
-          />
+        <NavLink to="/" className="brand" onClick={closeMenu}>
+          <img src="/logo.jpeg" alt={siteConfig.name} className="brand-logo" />
+
+          <div>
+            <h2>{siteConfig.name}</h2>
+            <p>{siteConfig.tagline}</p>
+          </div>
         </NavLink>
 
         <nav className={`nav-links ${open ? "show" : ""}`}>
