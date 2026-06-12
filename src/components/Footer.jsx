@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div>
           <div className="brand footer-brand">
-            <img src="/logo.jpg" alt={siteConfig.name} className="brand-logo" />
+            <img src="/logo.png" alt={siteConfig.name} className="brand-logo" />
 
             <div>
               <h2>{siteConfig.name}</h2>

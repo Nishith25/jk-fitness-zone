@@ -3157,3 +3157,112 @@ th {
     display: none;
   }
 }
+
+/* ================= CLEAN NAVBAR LOGO FINAL ================= */
+
+.navbar {
+  background: rgba(7, 11, 16, 0.96) !important;
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(31, 138, 203, 0.18);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.32);
+}
+
+.nav-inner {
+  min-height: 86px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 5px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 138, 203, 0.35);
+  box-shadow: 0 0 18px rgba(31, 138, 203, 0.22);
+}
+
+.brand h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  font-weight: 900;
+}
+
+.brand p {
+  margin: 4px 0 0;
+  color: #b9c4d0;
+  font-size: 0.64rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.nav-links a {
+  color: #dbeafe !important;
+  font-weight: 700;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #38bdf8 !important;
+}
+
+.menu-btn {
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.brand-logo-wide,
+.brand-logo-only {
+  all: unset;
+}
+
+@media (max-width: 768px) {
+  .nav-inner {
+    min-height: 76px;
+  }
+
+  .brand-logo {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+  }
+
+  .brand h2 {
+    font-size: 0.78rem;
+    letter-spacing: 0.13em;
+  }
+
+  .brand p {
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+  }
+
+  .nav-links {
+    top: 76px;
+    background: rgba(7, 11, 16, 0.98) !important;
+    border-bottom: 1px solid rgba(31, 138, 203, 0.18);
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .brand h2 {
+    font-size: 0.72rem;
+  }
+
+  .brand p {
+    display: none;
+  }
+}
