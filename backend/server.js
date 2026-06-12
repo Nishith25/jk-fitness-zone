@@ -19,19 +19,22 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
   "http://localhost:5174",
+  "https://jk-fitness-zone.vercel.app",
+  "https://jkfitnesszone.com",
+  "https://www.jkfitnesszone.com",
   process.env.FRONTEND_URL,
 ].filter(Boolean);
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests from Postman, mobile apps, server-to-server, etc.
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
+      console.log("Blocked by CORS:", origin);
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
@@ -51,6 +54,7 @@ app.get("/api/health", (req, res) => {
   res.json({
     success: true,
     message: "JK Fitness Zone API is healthy",
+    allowedOrigins,
   });
 });
 
