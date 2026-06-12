@@ -52,7 +52,7 @@ export default function BMICalculator() {
         <div className="card highlight-card">
           <div className="section-head">
             <p>Health Check</p>
-            <h2>Professional BMI Calculator</h2>
+            <h2>BMI Calculator</h2>
             <span>
               Check your Body Mass Index and get a simple fitness direction.
               BMI is a general indicator, not a medical diagnosis.
