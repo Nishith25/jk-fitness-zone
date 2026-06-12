@@ -2953,3 +2953,93 @@ th {
     height: 60px;
   }
 }
+
+/* ================= PREMIUM DARK NAVBAR + CLEAR LOGO ================= */
+
+.navbar {
+  background:
+    linear-gradient(180deg, rgba(8, 13, 19, 0.98), rgba(6, 10, 15, 0.96)) !important;
+  border-bottom: 1px solid rgba(31, 138, 203, 0.22);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.nav-inner {
+  min-height: 96px;
+}
+
+.brand-logo-only {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo-wide {
+  width: 220px;
+  height: 78px;
+  object-fit: contain;
+  display: block;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 8px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 138, 203, 0.45);
+  box-shadow:
+    0 0 0 3px rgba(31, 138, 203, 0.12),
+    0 12px 30px rgba(31, 138, 203, 0.28);
+}
+
+.nav-links a {
+  color: #dbeafe !important;
+  font-weight: 700;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #38bdf8 !important;
+}
+
+.menu-btn {
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    background:
+      linear-gradient(180deg, rgba(8, 13, 19, 0.98), rgba(6, 10, 15, 0.96)) !important;
+  }
+
+  .nav-inner {
+    min-height: 84px;
+  }
+
+  .brand-logo-wide {
+    width: 178px;
+    height: 64px;
+    padding: 7px 10px;
+    border-radius: 16px;
+  }
+
+  .nav-links {
+    top: 84px;
+    background: rgba(8, 13, 19, 0.98) !important;
+    border-bottom: 1px solid rgba(31, 138, 203, 0.22);
+  }
+
+  .nav-links a {
+    color: #dbeafe !important;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: rgba(31, 138, 203, 0.14);
+    color: #38bdf8 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-logo-wide {
+    width: 150px;
+    height: 58px;
+    padding: 6px 8px;
+  }
+}
