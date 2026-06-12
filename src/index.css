@@ -2792,3 +2792,51 @@ th {
     top: 78px;
   }
 }
+
+/* ================= PREMIUM LOGO HIGHLIGHT ================= */
+
+.brand-logo {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 6px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 138, 203, 0.45);
+  box-shadow:
+    0 0 0 3px rgba(31, 138, 203, 0.12),
+    0 10px 28px rgba(31, 138, 203, 0.35);
+}
+
+.brand {
+  gap: 16px;
+}
+
+.nav-inner {
+  min-height: 100px;
+}
+
+.brand h2 {
+  font-size: 1.08rem;
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    width: 64px;
+    height: 64px;
+    padding: 5px;
+    border-radius: 16px;
+  }
+
+  .nav-inner {
+    min-height: 84px;
+  }
+
+  .nav-links {
+    top: 84px;
+  }
+
+  .brand h2 {
+    font-size: 0.82rem;
+  }
+}
