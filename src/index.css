@@ -2710,3 +2710,55 @@ th {
     font-size: 1.35rem;
   }
 }
+
+
+/* ================= LOGO + HERO ADDRESS UPDATE ================= */
+
+.brand-logo {
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+  border-radius: 12px;
+}
+
+.hero-address-box {
+  align-items: flex-start;
+}
+
+.hero-address-line {
+  max-width: 100%;
+  align-items: flex-start !important;
+}
+
+.hero-address-line svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .hero-address-line {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+}
+
+/* ================= LOGO DISPLAY FIX ================= */
+
+.brand-logo {
+  object-fit: contain;
+  background: #ffffff;
+  padding: 3px;
+  border-radius: 14px;
+}
+
+.receipt-brand img,
+.receipt-header img {
+  object-fit: contain;
+  background: #ffffff;
+}

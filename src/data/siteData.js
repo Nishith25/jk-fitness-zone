@@ -5,7 +5,7 @@ export const siteConfig = {
   phoneDisplay: "9246228642 / 7901425895",
   alternatePhoneDisplay: "",
   address:
-    "Sri Ram Residency Plot No.14, 15, Beside Nalla Pochamma Temple Road, Nizampet, Hyderabad - 500090, Telangana",
+    "Sri Ram Residency, Plot No. 14 & 15, Beside Nalla Pochamma Temple Road, Nizampet, Hyderabad - 500090, Telangana",
   mapEmbed:
     "https://www.google.com/maps?q=Sri%20Ram%20Residency%20Plot%20No.14%2015%20Beside%20Nalla%20Pochamma%20Temple%20Road%20Nizampet%20Hyderabad%20500090%20Telangana&z=16&output=embed",
   hours: "Open 365 days • 5:00 AM to 10:00 PM",

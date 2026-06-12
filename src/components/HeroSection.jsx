@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Clock, MapPin, Dumbbell } from "lucide-react";
+import { ArrowRight, Clock, MapPin } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
 import { heroImages, heroHighlights, siteConfig } from "../data/siteData";
 import { useNavigate } from "react-router-dom";
@@ -102,7 +102,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="panel-bottom">
+          <div className="panel-bottom hero-address-box">
             <div>
               <h4>Open 365 Days</h4>
 
@@ -110,13 +110,9 @@ export default function HeroSection() {
                 <Clock size={16} /> 5:00 AM to 10:00 PM
               </p>
 
-              <p>
-                <MapPin size={16} /> Nizampet, Hyderabad
+              <p className="hero-address-line">
+                <MapPin size={16} /> {siteConfig.address}
               </p>
-            </div>
-
-            <div className="badge">
-              <Dumbbell size={15} /> Plans on WhatsApp
             </div>
           </div>
         </motion.div>
