@@ -13,9 +13,25 @@ import {
   Snowflake,
 } from "lucide-react";
 
-export default function DashboardCards({ role, stats, setActiveSection }) {
+export default function DashboardCards({
+  role,
+  stats,
+  setActiveSection,
+  onOpenSection,
+}) {
   const formatMoney = (amount) => {
     return `₹${Number(amount || 0).toLocaleString("en-IN")}`;
+  };
+
+  const handleOpen = (key) => {
+    if (onOpenSection) {
+      onOpenSection(key);
+      return;
+    }
+
+    if (setActiveSection) {
+      setActiveSection(key);
+    }
   };
 
   const adminCards = [
@@ -183,7 +199,7 @@ export default function DashboardCards({ role, stats, setActiveSection }) {
           key={card.key}
           type="button"
           className="dashboard-card"
-          onClick={() => setActiveSection(card.key)}
+          onClick={() => handleOpen(card.key)}
         >
           <div className="dashboard-card-icon">{card.icon}</div>
 

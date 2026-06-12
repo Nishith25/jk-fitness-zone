@@ -33,7 +33,6 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/programs" element={<Programs />} />
         <Route path="/contact" element={<Contact />} />
-
         <Route path="/login" element={<Login />} />
 
         <Route
@@ -46,7 +45,25 @@ export default function App() {
         />
 
         <Route
+          path="/admin-dashboard/:section"
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/trainer-dashboard"
+          element={
+            <ProtectedRoute allowedRoles={["trainer"]}>
+              <TrainerDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/trainer-dashboard/:section"
           element={
             <ProtectedRoute allowedRoles={["trainer"]}>
               <TrainerDashboard />

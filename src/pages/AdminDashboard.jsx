@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
@@ -15,9 +16,12 @@ import EnquiryManager from "../components/EnquiryManager";
 import ReportsManager from "../components/ReportsManager";
 
 export default function AdminDashboard() {
-  const { user, logout, API, authHeaders } = useAuth();
+  const { user, API, authHeaders } = useAuth();
+  const navigate = useNavigate();
+  const { section } = useParams();
 
-  const [activeSection, setActiveSection] = useState("customers");
+  const activeSection = section || "overview";
+
   const [showCustomerForm, setShowCustomerForm] = useState(false);
   const [showTrainerForm, setShowTrainerForm] = useState(false);
 
@@ -33,6 +37,11 @@ export default function AdminDashboard() {
   const [enquiryRefreshKey, setEnquiryRefreshKey] = useState(0);
 
   const today = new Date().toISOString().split("T")[0];
+
+  const openSection = (key) => {
+    navigate(`/admin-dashboard/${key}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const getDaysLeft = (expiryDate) => {
     if (!expiryDate) return null;
@@ -193,7 +202,42 @@ export default function AdminDashboard() {
     enquiries: enquirySummary?.total || 0,
   };
 
+  const renderSectionTitle = () => {
+    const titles = {
+      customers: "Customers",
+      trainers: "Trainers",
+      attendance: "Attendance",
+      expenses: "Expenses",
+      "balance-sheet": "Balance Sheet",
+      enquiries: "Enquiries",
+      reports: "Reports",
+      "live-memberships": "Live Memberships",
+      "expired-memberships": "Expired Memberships",
+      "frozen-memberships": "Frozen Memberships",
+      "expiring-1-3": "Expiring 1–3 Days",
+      "expiring-4-7": "Expiring 4–7 Days",
+      "expiring-8-15": "Expiring 8–15 Days",
+      dues: "Due Amount",
+      "today-collection": "Today Collection",
+      "total-collection": "Total Collection",
+    };
+
+    return titles[activeSection] || "Dashboard";
+  };
+
   const renderSection = () => {
+    if (activeSection === "overview") {
+      return (
+        <div className="card dashboard-welcome-card">
+          <h2>Dashboard Overview</h2>
+          <p className="card-text">
+            Select any card above or use the section buttons below to open that
+            module on a separate dashboard page.
+          </p>
+        </div>
+      );
+    }
+
     if (activeSection === "customers") {
       return (
         <>
@@ -274,7 +318,12 @@ export default function AdminDashboard() {
       );
     }
 
-    if (activeSection === "balance-sheet") {
+    if (
+      activeSection === "balance-sheet" ||
+      activeSection === "dues" ||
+      activeSection === "today-collection" ||
+      activeSection === "total-collection"
+    ) {
       return <BalanceSheet refreshKey={expenseRefreshKey} />;
     }
 
@@ -320,14 +369,24 @@ export default function AdminDashboard() {
 
     return (
       <div className="card">
-        <h2>{activeSection.replaceAll("-", " ").toUpperCase()}</h2>
-        <p className="card-text">This module will be added next.</p>
+        <h2>Page Not Found</h2>
+        <p className="card-text">This dashboard section does not exist.</p>
       </div>
     );
   };
 
+  const tabItems = [
+    { label: "Customers", key: "customers" },
+    { label: "Trainers", key: "trainers" },
+    { label: "Attendance", key: "attendance" },
+    { label: "Expenses", key: "expenses" },
+    { label: "Balance Sheet", key: "balance-sheet" },
+    { label: "Enquiries", key: "enquiries" },
+    { label: "Reports", key: "reports" },
+  ];
+
   return (
-    <section className="section page-top">
+    <section className="section page-top dashboard-page">
       <div className="container">
         <div className="dashboard-head">
           <div>
@@ -338,74 +397,26 @@ export default function AdminDashboard() {
               financial overview.
             </p>
           </div>
-
-          <button className="logout-btn" type="button" onClick={logout}>
-            Logout
-          </button>
         </div>
 
-        <DashboardCards
-          role="admin"
-          stats={stats}
-          setActiveSection={setActiveSection}
-        />
+        <DashboardCards role="admin" stats={stats} onOpenSection={openSection} />
 
         <div className="dashboard-tabs">
-          <button
-            type="button"
-            className={activeSection === "customers" ? "active" : ""}
-            onClick={() => setActiveSection("customers")}
-          >
-            Customers
-          </button>
+          {tabItems.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className={activeSection === item.key ? "active" : ""}
+              onClick={() => openSection(item.key)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
 
-          <button
-            type="button"
-            className={activeSection === "trainers" ? "active" : ""}
-            onClick={() => setActiveSection("trainers")}
-          >
-            Trainers
-          </button>
-
-          <button
-            type="button"
-            className={activeSection === "attendance" ? "active" : ""}
-            onClick={() => setActiveSection("attendance")}
-          >
-            Attendance
-          </button>
-
-          <button
-            type="button"
-            className={activeSection === "expenses" ? "active" : ""}
-            onClick={() => setActiveSection("expenses")}
-          >
-            Expenses
-          </button>
-
-          <button
-            type="button"
-            className={activeSection === "balance-sheet" ? "active" : ""}
-            onClick={() => setActiveSection("balance-sheet")}
-          >
-            Balance Sheet
-          </button>
-
-          <button
-            type="button"
-            className={activeSection === "enquiries" ? "active" : ""}
-            onClick={() => setActiveSection("enquiries")}
-          >
-            Enquiries
-          </button>
-
-          <button
-            type="button"
-            className={activeSection === "reports" ? "active" : ""}
-            onClick={() => setActiveSection("reports")}
-          >
-            Reports
-          </button>
+        <div className="dashboard-section-title">
+          <p className="eyebrow">Current Section</p>
+          <h2>{renderSectionTitle()}</h2>
         </div>
 
         <div className="dashboard-grid">{renderSection()}</div>
